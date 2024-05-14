@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "./file-viewer.module.css";
+import {BotVariant} from "@/app/bots";
 
 const TrashIcon = () => (
   <svg
@@ -18,7 +19,7 @@ const TrashIcon = () => (
   </svg>
 );
 
-const FileViewer = () => {
+const FileViewer = ({bot}: {bot: BotVariant}) => {
   const [files, setFiles] = useState([]);
 
   useEffect(() => {
@@ -30,7 +31,7 @@ const FileViewer = () => {
   }, []);
 
   const fetchFiles = async () => {
-    const resp = await fetch("/api/assistants/files", {
+    const resp = await fetch(`/api/assistants/files?assistantId=${bot.localId}`, {
       method: "GET",
     });
     const data = await resp.json();
@@ -77,7 +78,7 @@ const FileViewer = () => {
           ))
         )}
       </div>
-      <div className={styles.fileUploadContainer}>
+      {/*<div className={styles.fileUploadContainer}>
         <label htmlFor="file-upload" className={styles.fileUploadBtn}>
           Attach files
         </label>
@@ -89,7 +90,7 @@ const FileViewer = () => {
           multiple
           onChange={handleFileUpload}
         />
-      </div>
+      </div>*/}
     </div>
   );
 };

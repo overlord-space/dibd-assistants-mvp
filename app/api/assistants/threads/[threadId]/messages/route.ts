@@ -1,20 +1,25 @@
-import { assistantId } from "@/app/assistant-config";
-import { openai } from "@/app/openai";
+import {openai} from "@/app/openai";
+import {bots} from "@/app/bots";
 
 export const runtime = "nodejs";
 
 // Send a new message to a thread
-export async function POST(request, { params: { threadId } }) {
-  const { content } = await request.json();
+export async function POST(request, {params: {threadId}}) {
+    const {content, assistantId} = await request.json();
 
-  await openai.beta.threads.messages.create(threadId, {
-    role: "user",
-    content: content,
-  });
+    const assistant = bots.find((bot) => bot.localId === assistantId);
+    if (!assistant) {
+        return new Response(`Assistant not found ${assistantId}`, {status: 404});
+    }
 
-  const stream = openai.beta.threads.runs.stream(threadId, {
-    assistant_id: assistantId,
-  });
+    await openai.beta.threads.messages.create(threadId, {
+        role: "user",
+        content: content,
+    });
 
-  return new Response(stream.toReadableStream());
+    const stream = openai.beta.threads.runs.stream(threadId, {
+        assistant_id: assistant.assistantId,
+    });
+
+    return new Response(stream.toReadableStream());
 }

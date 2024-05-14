@@ -2,24 +2,18 @@
 
 import React from "react";
 import styles from "./page.module.css";
+import {bots} from "@/app/bots";
 
 const Home = () => {
-  const views = {
-    // "Basic chat": "basic-chat",
-    // "Function calling": "function-calling",
-    // "File search": "file-search",
-    "Тест #1": "v1",
-  };
-
   return (
     <main className={styles.main}>
       <div className={styles.title}>
-        Explore sample apps built with Assistants API
+        DIBD Assistants API
       </div>
       <div className={styles.container}>
-        {Object.entries(views).map(([name, url]) => (
-          <a key={name} className={styles.category} href={`/chats/${url}`}>
-            {name}
+        {bots.map((variant) => (
+          <a key={variant.localId} className={styles.category} href={`/bots/${variant.localId}`}>
+            {variant.name}
           </a>
         ))}
       </div>

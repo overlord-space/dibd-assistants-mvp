@@ -7,6 +7,7 @@ import Markdown from "react-markdown";
 // @ts-expect-error - no types for this yet
 import { AssistantStreamEvent } from "openai/resources/beta/assistants/assistants";
 import { RequiredActionFunctionToolCall } from "openai/resources/beta/threads/runs/runs";
+import {BotVariant} from "@/app/bots";
 
 type MessageProps = {
   role: "user" | "assistant" | "code";
@@ -53,12 +54,14 @@ const Message = ({ role, text }: MessageProps) => {
 
 type ChatProps = {
   functionCallHandler?: (
-    toolCall: RequiredActionFunctionToolCall
+    toolCall: RequiredActionFunctionToolCall,
   ) => Promise<string>;
+  bot: BotVariant,
 };
 
 const Chat = ({
-  functionCallHandler = () => Promise.resolve(""), // default to return empty string
+  functionCallHandler = () => Promise.resolve(""), // default to return empty string,
+  bot,
 }: ChatProps) => {
   const [userInput, setUserInput] = useState("");
   const [messages, setMessages] = useState([]);
@@ -93,6 +96,7 @@ const Chat = ({
         method: "POST",
         body: JSON.stringify({
           content: text,
+          assistantId: bot.localId,
         }),
       }
     );
@@ -245,7 +249,7 @@ const Chat = ({
       })
       return [...prevMessages.slice(0, -1), updatedLastMessage];
     });
-    
+
   }
 
   return (
