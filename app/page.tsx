@@ -4,7 +4,7 @@ import React from "react";
 import styles from "./page.module.css";
 
 const Home = () => {
-  const categories = {
+  const views = {
     // "Basic chat": "basic-chat",
     // "Function calling": "function-calling",
     // "File search": "file-search",
@@ -17,8 +17,8 @@ const Home = () => {
         Explore sample apps built with Assistants API
       </div>
       <div className={styles.container}>
-        {Object.entries(categories).map(([name, url]) => (
-          <a key={name} className={styles.category} href={`/examples/${url}`}>
+        {Object.entries(views).map(([name, url]) => (
+          <a key={name} className={styles.category} href={`/chats/${url}`}>
             {name}
           </a>
         ))}
