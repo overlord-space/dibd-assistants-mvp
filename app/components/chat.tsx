@@ -265,14 +265,14 @@ const Chat = ({
           className={styles.input}
           value={userInput}
           onChange={(e) => setUserInput(e.target.value)}
-          placeholder="Enter your question"
+          placeholder="Введите запрос..."
         />
         <button
           type="submit"
           className={styles.button}
           disabled={inputDisabled}
         >
-          Send
+          Отправить
         </button>
       </form>
     </div>

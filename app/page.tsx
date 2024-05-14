@@ -5,10 +5,10 @@ import styles from "./page.module.css";
 
 const Home = () => {
   const categories = {
-    "Basic chat": "basic-chat",
-    "Function calling": "function-calling",
-    "File search": "file-search",
-    All: "all",
+    // "Basic chat": "basic-chat",
+    // "Function calling": "function-calling",
+    // "File search": "file-search",
+    "Тест #1": "v1",
   };
 
   return (
