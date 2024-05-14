@@ -21,14 +21,16 @@ const TrashIcon = () => (
 
 const FileViewer = ({bot}: {bot: BotVariant}) => {
   const [files, setFiles] = useState([]);
+  // isLoaded
+  const [isLoaded, setIsLoaded] = useState(false);
 
-  useEffect(() => {
+  /*useEffect(() => {
     const interval = setInterval(() => {
       fetchFiles();
     }, 1000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, []);*/
 
   const fetchFiles = async () => {
     const resp = await fetch(`/api/assistants/files?assistantId=${bot.localId}`, {
@@ -36,7 +38,10 @@ const FileViewer = ({bot}: {bot: BotVariant}) => {
     });
     const data = await resp.json();
     setFiles(data);
+    setIsLoaded(true);
   };
+
+  fetchFiles();
 
   const handleFileDelete = async (fileId) => {
     await fetch("/api/assistants/files", {
@@ -62,20 +67,24 @@ const FileViewer = ({bot}: {bot: BotVariant}) => {
           files.length !== 0 ? styles.grow : ""
         }`}
       >
-        {files.length === 0 ? (
-          <div className={styles.title}>Attach files to test file search</div>
-        ) : (
-          files.map((file) => (
-            <div key={file.file_id} className={styles.fileEntry}>
-              <div className={styles.fileName}>
-                <span className={styles.fileName}>{file.filename}</span>
-                <span className={styles.fileStatus}>{file.status}</span>
+        {isLoaded ? (
+          files.length === 0 ? (
+            <div className={styles.title}>No files uploaded</div>
+          ) : (
+            files.map((file) => (
+              <div key={file.file_id} className={styles.fileEntry}>
+                <div className={styles.fileName}>
+                  <span className={styles.fileName}>{file.filename}</span>
+                  <span className={styles.fileStatus}>{file.status}</span>
+                </div>
+                {/*<span onClick={() => handleFileDelete(file.file_id)}>
+                  <TrashIcon />
+                </span>*/}
               </div>
-              <span onClick={() => handleFileDelete(file.file_id)}>
-                <TrashIcon />
-              </span>
-            </div>
-          ))
+            ))
+          )
+        ) : (
+          <div className={styles.title}>Loading...</div>
         )}
       </div>
       {/*<div className={styles.fileUploadContainer}>
