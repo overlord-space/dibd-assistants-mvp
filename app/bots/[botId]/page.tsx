@@ -18,10 +18,14 @@ const FunctionCalling = ({params: {botId}}) => {
     return (
         <main className={styles.main}>
             <div className={styles.container}>
-                {<div className={styles.fileViewer}>
+                {/*<div className={styles.fileViewer}>
                     <FileViewer bot={bot} />
-                </div>}
+                </div>*/}
                 <div className={styles.chatContainer}>
+                    <br/>
+                    <h1>{bot.name}</h1>
+                    <p>{bot.description}</p>
+
                     <div className={styles.chat}>
                         <Chat bot={bot}/>
                     </div>

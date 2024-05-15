@@ -18,4 +18,10 @@ export const bots: BotVariant[] = [
         localId: "1c-1",
         assistantId: "asst_ZAhWGis2ohVJEFnBYKUbts30",
     },
+    {
+        name: "OVA",
+        description: "Модель для тестирования по международным материалам",
+        localId: "2G",
+        assistantId: "asst_2nOtgfWbKhwbnetmddj4UW0x",
+    },
 ]
