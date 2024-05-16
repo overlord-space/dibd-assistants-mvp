@@ -5,6 +5,8 @@ import styles from "./page.module.css";
 import Chat from "../../components/chat";
 import {bots} from "@/app/bots";
 import FileViewer from "@/app/components/file-viewer";
+import { RequiredActionFunctionToolCall } from "openai/resources/beta/threads/runs/runs";
+import { makeChanges } from "@/app/utils/test";
 
 const FunctionCalling = ({params: {botId}}) => {
     // Find the bot variant from the bots array
@@ -14,6 +16,15 @@ const FunctionCalling = ({params: {botId}}) => {
     if (!bot) {
         return <div>Bot variant not found</div>;
     }
+
+    const functionCallHandler = async (call: RequiredActionFunctionToolCall) => {
+        const args = JSON.parse(call.function.arguments);
+        console.log(args)
+        const data = makeChanges(args);
+        console.log(data)
+        return JSON.stringify(data);
+      };
+    
 
     return (
         <main className={styles.main}>
