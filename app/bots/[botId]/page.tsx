@@ -38,7 +38,7 @@ const FunctionCalling = ({params: {botId}}) => {
                     <p>{bot.description}</p>
 
                     <div className={styles.chat}>
-                        <Chat bot={bot}/>
+                        <Chat bot={bot} functionCallHandler={functionCallHandler}/>
                     </div>
                 </div>
             </div>
