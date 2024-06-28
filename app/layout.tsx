@@ -15,7 +15,6 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         {children}
-        <img className="logo" src="/dns.svg" alt="DIBD Logo" />
       </body>
     </html>
   );
