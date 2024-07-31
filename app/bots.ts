@@ -36,5 +36,11 @@ export const bots: BotVariant[] = [
         localId: "Supra",
         assistantId: "asst_qaBlrbswg9PlYYIu0w5uTZOH",
     },
+    {
+        name: "Vladivostokyo",
+        description: "Модель Vladivostokyo",
+        localId: "Vladivostokyo",
+        assistantId: "asst_eI74MDvCrjkjtMpAAQiBMJSi",
+    },
     
 ]
