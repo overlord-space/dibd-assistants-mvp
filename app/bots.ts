@@ -31,16 +31,9 @@ export const bots: BotVariant[] = [
     //     assistantId: "asst_2nOtgfWbKhwbnetmddj4UW0x",
     // },
     {
-        name: "Supra",
-        description: "Модель для тестирование по материалам Supra",
-        localId: "Supra",
-        assistantId: "asst_qaBlrbswg9PlYYIu0w5uTZOH",
-    },
-    {
-        name: "Vladivostokyo",
-        description: "Модель Vladivostokyo",
-        localId: "Vladivostokyo",
-        assistantId: "asst_eI74MDvCrjkjtMpAAQiBMJSi",
-    },
-    
+        name: "DNS",
+        description: "Модель для тестирование по материалам",
+        localId: "DNS",
+        assistantId: "asst_gZSnl3qThcB8XODE1qFMd53g",
+    }
 ]
